@@ -15,7 +15,17 @@ function MainGUI:_CreateGUI()
 		syn.protect_gui(main_gui)
 	end
 	
-	main_gui.Parent = game.CoreGui
+	main_gui.Parent = game.Players.LocalPlayer.PlayerGui
+	
+	local good_space = Instance.new("Frame")
+	good_space.AnchorPoint = Vector2.new(0.5, 0.5)
+	good_space.BackgroundColor3 = Color3.new(1, 1, 1)
+	good_space.BackgroundTransparency = 1
+	good_space.Position = UDim2.new(0.5, 0, 0.5, 0)
+	good_space.Size = UDim2.new(0.980000019, 0, 0.980000019, 0)
+	good_space.Visible = true
+	good_space.Name = "GoodSpace"
+	good_space.Parent = main_gui
 
 	local main_frame = Instance.new("Frame")
 	main_frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -643,6 +653,187 @@ function MainGUI:ViewTab(TabName)
 						object.updateCallback(newValue)
 					end)
 				end)
+			elseif object.objectType == "hotkey" then
+				local hotkey = Instance.new("Frame")
+				hotkey.AnchorPoint = Vector2.new(0.5, 0.5)
+				hotkey.BackgroundColor3 = Color3.new(0.192157, 0.192157, 0.192157)
+				hotkey.BackgroundTransparency = 0.8999999761581421
+				hotkey.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				hotkey.Position = UDim2.new(0.0450000018, 0, 0.112000003, 0)
+				hotkey.Size = UDim2.new(0.899999976, 0, 0.150000006, 0)
+				hotkey.Visible = true
+				hotkey.Name = "Hotkey"
+				hotkey.Parent = self.GUIObject.MainFrame.TabContent
+
+				local uistroke = Instance.new("UIStroke")
+				uistroke.Color = Color3.new(1, 1, 1)
+				uistroke.Parent = hotkey
+
+				local uicorner = Instance.new("UICorner")
+				uicorner.Parent = hotkey
+
+				local hotkey_name = Instance.new("TextLabel")
+				hotkey_name.Font = Enum.Font.RobotoMono
+				hotkey_name.Text = objectName
+				hotkey_name.TextColor3 = Color3.new(1, 1, 1)
+				hotkey_name.TextScaled = true
+				hotkey_name.TextSize = 14
+				hotkey_name.TextWrapped = true
+				hotkey_name.AnchorPoint = Vector2.new(0.5, 0.5)
+				hotkey_name.BackgroundColor3 = Color3.new(1, 1, 1)
+				hotkey_name.BackgroundTransparency = 1
+				hotkey_name.Position = UDim2.new(0.280000001, 0, 0.5, 0)
+				hotkey_name.Size = UDim2.new(0.5, 0, 1, 0)
+				hotkey_name.Visible = true
+				hotkey_name.Name = "HotkeyName"
+				hotkey_name.Parent = hotkey
+
+				local uitext_size_constraint = Instance.new("UITextSizeConstraint")
+				uitext_size_constraint.MaxTextSize = 24
+				uitext_size_constraint.Parent = hotkey_name
+
+				local toggle_background = Instance.new("Frame")
+				toggle_background.AnchorPoint = Vector2.new(0.5, 0.5)
+				toggle_background.BackgroundColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+				toggle_background.ClipsDescendants = true
+				toggle_background.Position = UDim2.new(0.850000024, 0, 0.5, 0)
+				toggle_background.Size = UDim2.new(0.250000003, 0, 0.899999976, 0)
+				toggle_background.Visible = true
+				toggle_background.Name = "ToggleBackground"
+				toggle_background.Parent = hotkey
+
+				local uicorner_2 = Instance.new("UICorner")
+				uicorner_2.Parent = toggle_background
+
+				local click_detector = Instance.new("TextButton")
+				click_detector.Font = Enum.Font.RobotoMono
+				click_detector.Text = "Q"
+				click_detector.TextColor3 = Color3.new(1, 1, 1)
+				click_detector.TextScaled = true
+				click_detector.TextSize = 14
+				click_detector.TextWrapped = true
+				click_detector.AnchorPoint = Vector2.new(0.5, 0.5)
+				click_detector.BackgroundColor3 = Color3.new(1, 1, 1)
+				click_detector.BackgroundTransparency = 1
+				click_detector.Position = UDim2.new(0.5, 0, 0.5, 0)
+				click_detector.Size = UDim2.new(1, 0, 1, 0)
+				click_detector.Visible = true
+				click_detector.Name = "ClickDetector"
+				click_detector.Parent = toggle_background
+
+				local uitext_size_constraint_2 = Instance.new("UITextSizeConstraint")
+				uitext_size_constraint_2.MaxTextSize = 16
+				uitext_size_constraint_2.Parent = click_detector
+
+				local uiaspect_ratio_constraint = Instance.new("UIAspectRatioConstraint")
+				uiaspect_ratio_constraint.AspectRatio = 12
+				uiaspect_ratio_constraint.Parent = hotkey
+				
+				click_detector.Text = self.HotkeyValues[objectName].Name
+				
+				click_detector.MouseButton1Click:Connect(function()
+					click_detector.Text = "..."
+					
+					local connection
+					connection = UIS.InputBegan:Connect(function(input)
+						if input.KeyCode ~= Enum.KeyCode.Unknown then
+							self.HotkeyValues[objectName] = input.KeyCode
+							click_detector.Text = input.KeyCode.Name
+							connection:Disconnect()
+						end
+					end)
+				end)
+			elseif object.objectType == "optionsList" then
+				local select_list = Instance.new("Frame")
+				select_list.AnchorPoint = Vector2.new(0.5, 0.5)
+				select_list.BackgroundColor3 = Color3.new(0.192157, 0.192157, 0.192157)
+				select_list.BackgroundTransparency = 0.8999999761581421
+				select_list.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843)
+				select_list.Position = UDim2.new(0.0450000018, 0, 0.112000003, 0)
+				select_list.Size = UDim2.new(0.900000036, 0, 0.119468667, 0)
+				select_list.Visible = true
+				select_list.Name = "SelectList"
+				select_list.Parent = self.GUIObject.MainFrame.TabContent
+
+				local uistroke = Instance.new("UIStroke")
+				uistroke.Color = Color3.new(1, 1, 1)
+				uistroke.Parent = select_list
+
+				local uicorner = Instance.new("UICorner")
+				uicorner.Parent = select_list
+
+				local select_name = Instance.new("TextLabel")
+				select_name.Font = Enum.Font.RobotoMono
+				select_name.Text = objectName
+				select_name.TextColor3 = Color3.new(1, 1, 1)
+				select_name.TextScaled = true
+				select_name.TextSize = 14
+				select_name.TextWrapped = true
+				select_name.AnchorPoint = Vector2.new(0.5, 0.5)
+				select_name.BackgroundColor3 = Color3.new(1, 1, 1)
+				select_name.BackgroundTransparency = 1
+				select_name.Position = UDim2.new(0.280000001, 0, 0.5, 0)
+				select_name.Size = UDim2.new(0.5, 0, 1, 0)
+				select_name.Visible = true
+				select_name.Name = "SelectName"
+				select_name.Parent = select_list
+
+				local uitext_size_constraint = Instance.new("UITextSizeConstraint")
+				uitext_size_constraint.MaxTextSize = 24
+				uitext_size_constraint.Parent = select_name
+
+				local select_background = Instance.new("Frame")
+				select_background.AnchorPoint = Vector2.new(0.5, 0.5)
+				select_background.BackgroundColor3 = Color3.new(0.254902, 0.254902, 0.254902)
+				select_background.ClipsDescendants = true
+				select_background.Position = UDim2.new(0.850000024, 0, 0.5, 0)
+				select_background.Size = UDim2.new(0.25, 0, 0.899999976, 0)
+				select_background.Visible = true
+				select_background.Name = "SelectBackground"
+				select_background.Parent = select_list
+
+				local uicorner_2 = Instance.new("UICorner")
+				uicorner_2.Parent = select_background
+
+				local click_detector = Instance.new("TextButton")
+				click_detector.Font = Enum.Font.RobotoMono
+				click_detector.Text = "NORMAL"
+				click_detector.TextColor3 = Color3.new(1, 1, 1)
+				click_detector.TextScaled = true
+				click_detector.TextSize = 14
+				click_detector.TextWrapped = true
+				click_detector.AnchorPoint = Vector2.new(0.5, 0.5)
+				click_detector.BackgroundColor3 = Color3.new(1, 1, 1)
+				click_detector.BackgroundTransparency = 1
+				click_detector.Position = UDim2.new(0.5, 0, 0.5, 0)
+				click_detector.Size = UDim2.new(1, 0, 1, 0)
+				click_detector.Visible = true
+				click_detector.Name = "ClickDetector"
+				click_detector.Parent = select_background
+
+				local uitext_size_constraint_2 = Instance.new("UITextSizeConstraint")
+				uitext_size_constraint_2.MaxTextSize = 16
+				uitext_size_constraint_2.Parent = click_detector
+
+				local uiaspect_ratio_constraint = Instance.new("UIAspectRatioConstraint")
+				uiaspect_ratio_constraint.AspectRatio = 12
+				uiaspect_ratio_constraint.Parent = select_list
+				
+				click_detector.Text = object.options[object.currentIndex]
+				
+				click_detector.MouseButton1Down:Connect(function()
+					if object.currentIndex >= #object.options then
+						object.currentIndex = 1
+						self.SelectListValues[objectName] = object.options[object.currentIndex]
+						click_detector.Text = object.options[object.currentIndex]
+					else
+						object.currentIndex += 1
+						self.SelectListValues[objectName] = object.options[object.currentIndex]
+						click_detector.Text = object.options[object.currentIndex]
+					end
+					
+					object.updateCallback(object.options[object.currentIndex])
+				end)
 			end
 		end
 	end
@@ -741,6 +932,66 @@ function MainGUI:CreateTab(TabName)
 		print(self.CreatedTabs[TabName])
 	end
 	
+	function CurrentTab.CreateHotkey(HotkeyName, Callback, defaultKey)
+		if typeof(HotkeyName) ~= "string" then
+			warn("Tried to name tab something different than string!")
+			return
+		end
+
+		if typeof(Callback) ~= "function" then
+			warn("Callback must be function")
+			return
+		end
+
+		tabObject.Content[HotkeyName] = {
+			["objectType"] = "hotkey",
+			["callback"] = Callback
+		}
+		
+		self.CreatedTabs[TabName] = tabObject
+		
+		table.insert(self.CreatedHokeys, HotkeyName)
+		self.HotkeyValues[HotkeyName] = defaultKey
+		
+		print(self.CreatedTabs[TabName])
+		print(self.HotkeyValues)
+		print(self.CreatedHokeys)
+	end
+	
+	function CurrentTab.CreateSelectList(listName, listOptions, updateCallback, defaultValue)
+		if typeof(listName) ~= "string" then
+			warn("Tried to name tab something different than string!")
+			return
+		end
+
+		if typeof(updateCallback) ~= "function" then
+			warn("Callback must be function")
+			return
+		end
+		
+		if typeof(listOptions) ~= "table" then
+			warn("Options must be a table!")
+			return
+		end
+
+		if typeof(defaultValue) ~= "string" or not table.find(listOptions, defaultValue) then
+			warn("Default value must be an option!")
+			return
+		end
+		
+		tabObject.Content[listName] = {
+			["objectType"] = "optionsList",
+			["updateCallback"] = updateCallback,
+			["options"] = listOptions,
+			["currentIndex"] = table.find(listOptions, defaultValue)
+		}
+		
+		self.CreatedTabs[TabName] = tabObject
+		
+		table.insert(self.CreatedSelectLists, listName)
+		self.SelectListValues[listName] = defaultValue
+	end
+	
 	tab.MouseButton1Down:Connect(function()
 		self:ViewTab(TabName)
 	end)
@@ -793,6 +1044,9 @@ function MainGUI.create()
 	-- }
 	self.CreatedTabs = {}
 	
+	
+	self.CreatedSelectLists = {}
+	self.SelectListValues = {}
 	
 	self:_CreateGUI()
 	self:InitGUI()
