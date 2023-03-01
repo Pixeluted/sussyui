@@ -119,11 +119,11 @@ function MainGUI:_CreateGUI()
 	notification_frame.AnchorPoint = Vector2.new(0.5, 0.5)
 	notification_frame.BackgroundColor3 = Color3.new(1, 1, 1)
 	notification_frame.BackgroundTransparency = 1
-	notification_frame.Position = UDim2.new(0.933838904, 0, 0.815, 0)
+	notification_frame.Position = UDim2.new(0.934000015, 0, 0.745000005, 0)
 	notification_frame.Size = UDim2.new(0.130322173, 0, 0.5, 0)
 	notification_frame.Visible = true
 	notification_frame.Name = "NotificationFrame"
-	notification_frame.Parent = main_gui
+	notification_frame.Parent = workspace
 
 	local uilist_layout = Instance.new("UIListLayout")
 	uilist_layout.Padding = UDim.new(0.029999999329447746, 0)
@@ -133,7 +133,7 @@ function MainGUI:_CreateGUI()
 	uilist_layout.Parent = notification_frame
 
 	local uiaspect_ratio_constraint = Instance.new("UIAspectRatioConstraint")
-	uiaspect_ratio_constraint.AspectRatio = 0.651816725730896
+	uiaspect_ratio_constraint.AspectRatio = 0.4633677303791046
 	uiaspect_ratio_constraint.Parent = notification_frame
 	
 	local draggable_box = Instance.new("Frame")
@@ -1119,7 +1119,7 @@ function MainGUI:CreateNotification(notificationType, notificationInfo)
 		item_spawned.BackgroundColor3 = Color3.new(1, 1, 1)
 		item_spawned.BackgroundTransparency = 1
 		item_spawned.Position = UDim2.new(0.0450000018, 0, 0.112000003, 0)
-		item_spawned.Size = UDim2.new(1, 0, 0.300000012, 0)
+		item_spawned.Size = UDim2.new(0.852, 0, 0.126, 0)
 		item_spawned.Visible = true
 		item_spawned.Name = "ItemSpawned"
 		item_spawned.Parent = self.GUIObject.NotificationFrame
@@ -1171,7 +1171,7 @@ function MainGUI:CreateNotification(notificationType, notificationInfo)
 		event_notification.BackgroundColor3 = Color3.new(1, 1, 1)
 		event_notification.BackgroundTransparency = 1
 		event_notification.Position = UDim2.new(0.0450000018, 0, 0.112000003, 0)
-		event_notification.Size = UDim2.new(1, 0, 0.300000012, 0)
+		event_notification.Size = UDim2.new(0.852, 0, 0.126, 0)
 		event_notification.Visible = true
 		event_notification.Name = "EventNotification"
 		event_notification.Parent = self.GUIObject.NotificationFrame
@@ -1223,7 +1223,7 @@ function MainGUI:CreateNotification(notificationType, notificationInfo)
 		custom_notification.BackgroundColor3 = Color3.new(1, 1, 1)
 		custom_notification.BackgroundTransparency = 1
 		custom_notification.Position = UDim2.new(0.0450000018, 0, 0.112000003, 0)
-		custom_notification.Size = UDim2.new(1, 0, 0.300000012, 0)
+		custom_notification.Size = UDim2.new(0.852, 0, 0.126, 0)
 		custom_notification.Visible = true
 		custom_notification.Name = "CustomNotification"
 		custom_notification.Parent = self.GUIObject.NotificationFrame
