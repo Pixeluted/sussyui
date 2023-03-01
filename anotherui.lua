@@ -123,7 +123,7 @@ function MainGUI:_CreateGUI()
 	notification_frame.Size = UDim2.new(0.130322173, 0, 0.5, 0)
 	notification_frame.Visible = true
 	notification_frame.Name = "NotificationFrame"
-	notification_frame.Parent = workspace
+	notification_frame.Parent = main_gui
 
 	local uilist_layout = Instance.new("UIListLayout")
 	uilist_layout.Padding = UDim.new(0.029999999329447746, 0)
