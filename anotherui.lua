@@ -7,7 +7,7 @@ function MainGUI:_CreateGUI()
 	local main_gui = Instance.new("ScreenGui")
 	main_gui.IgnoreGuiInset = true
 	main_gui.ScreenInsets = Enum.ScreenInsets.DeviceSafeInsets
-	main_gui.ResetOnSpawn = true
+	main_gui.ResetOnSpawn = false
 	main_gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	main_gui.Name = "MainGUI"
 	
@@ -16,16 +16,6 @@ function MainGUI:_CreateGUI()
 	end
 	
 	main_gui.Parent = game.Players.LocalPlayer.PlayerGui
-	
-	local good_space = Instance.new("Frame")
-	good_space.AnchorPoint = Vector2.new(0.5, 0.5)
-	good_space.BackgroundColor3 = Color3.new(1, 1, 1)
-	good_space.BackgroundTransparency = 1
-	good_space.Position = UDim2.new(0.5, 0, 0.5, 0)
-	good_space.Size = UDim2.new(0.980000019, 0, 0.980000019, 0)
-	good_space.Visible = true
-	good_space.Name = "GoodSpace"
-	good_space.Parent = main_gui
 
 	local main_frame = Instance.new("Frame")
 	main_frame.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -36,6 +26,115 @@ function MainGUI:_CreateGUI()
 	main_frame.Visible = true
 	main_frame.Name = "MainFrame"
 	main_frame.Parent = main_gui
+	
+	local game_info = Instance.new("Frame")
+	game_info.AnchorPoint = Vector2.new(0.5, 0.5)
+	game_info.BackgroundColor3 = Color3.new(1, 1, 1)
+	game_info.BackgroundTransparency = 1
+	game_info.Position = UDim2.new(0.0820000023, 0, 0.939999998, 0)
+	game_info.Size = UDim2.new(0.150000006, 0, 0.150000006, 0)
+	game_info.Visible = true
+	game_info.Name = "GameInfo"
+	game_info.Parent = main_gui
+
+	local power_text = Instance.new("TextLabel")
+	power_text.Font = Enum.Font.RobotoMono
+	power_text.Text = "Power:"
+	power_text.TextColor3 = Color3.new(1, 1, 1)
+	power_text.TextScaled = true
+	power_text.TextSize = 14
+	power_text.TextWrapped = true
+	power_text.AnchorPoint = Vector2.new(0.5, 0.5)
+	power_text.BackgroundColor3 = Color3.new(1, 1, 1)
+	power_text.BackgroundTransparency = 1
+	power_text.Position = UDim2.new(0.192399442, 0, 0.842367589, 0)
+	power_text.Size = UDim2.new(0.328490227, 0, 0.29654035, 0)
+	power_text.Visible = true
+	power_text.Name = "PowerText"
+	power_text.Parent = game_info
+
+	local power_bar = Instance.new("Frame")
+	power_bar.AnchorPoint = Vector2.new(0.5, 0.5)
+	power_bar.BackgroundColor3 = Color3.new(0.231373, 0.231373, 0.231373)
+	power_bar.Position = UDim2.new(0.674606204, 0, 0.86433357, 0)
+	power_bar.Size = UDim2.new(0.576963544, 0, 0.230643168, 0)
+	power_bar.Visible = true
+	power_bar.Name = "PowerBar"
+	power_bar.Parent = game_info
+
+	local uicorner = Instance.new("UICorner")
+	uicorner.Parent = power_bar
+
+	local fillbar = Instance.new("Frame")
+	fillbar.AnchorPoint = Vector2.new(0.01, 0.5)
+	fillbar.BackgroundColor3 = Color3.new(1, 1, 1)
+	fillbar.Position = UDim2.new(0.01, 0, 0.5, 0)
+	fillbar.Size = UDim2.new(0.01, 0, 1, 0)
+	fillbar.Visible = true
+	fillbar.Name = "Fillbar"
+	fillbar.Parent = power_bar
+
+	local uicorner_2 = Instance.new("UICorner")
+	uicorner_2.Parent = fillbar
+
+	local power_detail = Instance.new("TextLabel")
+	power_detail.Font = Enum.Font.RobotoMono
+	power_detail.Text = "100 / 1000"
+	power_detail.TextColor3 = Color3.new(1, 1, 1)
+	power_detail.TextScaled = true
+	power_detail.TextSize = 14
+	power_detail.TextStrokeTransparency = 0
+	power_detail.TextWrapped = true
+	power_detail.AnchorPoint = Vector2.new(0.5, 0.5)
+	power_detail.BackgroundColor3 = Color3.new(1, 1, 1)
+	power_detail.BackgroundTransparency = 1
+	power_detail.Position = UDim2.new(0.5, 0, 0.5, 0)
+	power_detail.Size = UDim2.new(1, 0, 1, 0)
+	power_detail.Visible = true
+	power_detail.Name = "PowerDetail"
+	power_detail.Parent = power_bar
+
+	local time_info = Instance.new("TextLabel")
+	time_info.Font = Enum.Font.RobotoMono
+	time_info.Text = "Time Left: 6:48"
+	time_info.TextColor3 = Color3.new(1, 1, 1)
+	time_info.TextScaled = true
+	time_info.TextSize = 14
+	time_info.TextWrapped = true
+	time_info.TextXAlignment = Enum.TextXAlignment.Left
+	time_info.AnchorPoint = Vector2.new(0.5, 0.5)
+	time_info.BackgroundColor3 = Color3.new(1, 1, 1)
+	time_info.BackgroundTransparency = 1
+	time_info.Position = UDim2.new(0.495621115, 0, 0.54582721, 0)
+	time_info.Size = UDim2.new(0.934933543, 0, 0.29654035, 0)
+	time_info.Visible = true
+	time_info.Name = "TimeInfo"
+	time_info.Parent = game_info
+
+	local uiaspect_ratio_constraint = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint.AspectRatio = 2.607907772064209
+	uiaspect_ratio_constraint.Parent = game_info
+	
+	local notification_frame = Instance.new("Frame")
+	notification_frame.AnchorPoint = Vector2.new(0.5, 0.5)
+	notification_frame.BackgroundColor3 = Color3.new(1, 1, 1)
+	notification_frame.BackgroundTransparency = 1
+	notification_frame.Position = UDim2.new(0.933838904, 0, 0.815, 0)
+	notification_frame.Size = UDim2.new(0.130322173, 0, 0.5, 0)
+	notification_frame.Visible = true
+	notification_frame.Name = "NotificationFrame"
+	notification_frame.Parent = main_gui
+
+	local uilist_layout = Instance.new("UIListLayout")
+	uilist_layout.Padding = UDim.new(0.029999999329447746, 0)
+	uilist_layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+	uilist_layout.SortOrder = Enum.SortOrder.LayoutOrder
+	uilist_layout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+	uilist_layout.Parent = notification_frame
+
+	local uiaspect_ratio_constraint = Instance.new("UIAspectRatioConstraint")
+	uiaspect_ratio_constraint.AspectRatio = 0.651816725730896
+	uiaspect_ratio_constraint.Parent = notification_frame
 	
 	local draggable_box = Instance.new("Frame")
 	draggable_box.AnchorPoint = Vector2.new(0.5, 0.5)
@@ -997,6 +1096,202 @@ function MainGUI:CreateTab(TabName)
 	end)
 	
 	return CurrentTab
+end
+
+--notificationInfo = {
+--	["lasts"] = 5,
+--	["itemData"] = { ["itemType"] = "Flaregun", ["position"] = "14, 587, 5" },
+--  ["eventInfo"] = "Rake has been defeated!"
+--  ["customInfo"] = "You have been nay nayed :clueless:",
+-- 	["customTitle"] = "xdd"
+--}
+--
+function MainGUI:CreateNotification(notificationType, notificationInfo)
+	local hasBeenCreated = false
+	local notificationObject = nil
+	
+	print("called")
+	print(notificationType, notificationInfo)
+	
+	if notificationType == "item_spawned" then
+		local item_spawned = Instance.new("Frame")
+		item_spawned.AnchorPoint = Vector2.new(0.5, 0.5)
+		item_spawned.BackgroundColor3 = Color3.new(1, 1, 1)
+		item_spawned.BackgroundTransparency = 1
+		item_spawned.Position = UDim2.new(0.0450000018, 0, 0.112000003, 0)
+		item_spawned.Size = UDim2.new(1, 0, 0.300000012, 0)
+		item_spawned.Visible = true
+		item_spawned.Name = "ItemSpawned"
+		item_spawned.Parent = self.GUIObject.NotificationFrame
+
+		local uistroke = Instance.new("UIStroke")
+		uistroke.Color = Color3.new(1, 1, 1)
+		uistroke.Parent = item_spawned
+
+		local uicorner = Instance.new("UICorner")
+		uicorner.Parent = item_spawned
+
+		local title = Instance.new("TextLabel")
+		title.Font = Enum.Font.RobotoMono
+		title.Text = "Item Spawned"
+		title.TextColor3 = Color3.new(1, 1, 1)
+		title.TextScaled = true
+		title.TextSize = 14
+		title.TextWrapped = true
+		title.AnchorPoint = Vector2.new(0.5, 0.5)
+		title.BackgroundColor3 = Color3.new(1, 1, 1)
+		title.BackgroundTransparency = 1
+		title.Position = UDim2.new(0.5, 0, 0.189999998, 0)
+		title.Size = UDim2.new(1, 0, 0.400000006, 0)
+		title.Visible = true
+		title.Name = "Title"
+		title.Parent = item_spawned
+
+		local iteminfo = Instance.new("TextLabel")
+		iteminfo.Font = Enum.Font.RobotoMono
+		iteminfo.Text = "Item Type: "..notificationInfo.itemData["itemType"].." Position: "..notificationInfo.itemData["position"]
+		iteminfo.TextColor3 = Color3.new(1, 1, 1)
+		iteminfo.TextScaled = true
+		iteminfo.TextSize = 14
+		iteminfo.TextWrapped = true
+		iteminfo.AnchorPoint = Vector2.new(0.5, 0.5)
+		iteminfo.BackgroundColor3 = Color3.new(1, 1, 1)
+		iteminfo.BackgroundTransparency = 1
+		iteminfo.Position = UDim2.new(0.50000006, 0, 0.675982594, 0)
+		iteminfo.Size = UDim2.new(1, 0, 0.571966529, 0)
+		iteminfo.Visible = true
+		iteminfo.Name = "ItemInfo"
+		iteminfo.Parent = item_spawned
+		
+		hasBeenCreated = true
+		notificationObject = item_spawned
+	elseif notificationType == "event" then
+		local event_notification = Instance.new("Frame")
+		event_notification.AnchorPoint = Vector2.new(0.5, 0.5)
+		event_notification.BackgroundColor3 = Color3.new(1, 1, 1)
+		event_notification.BackgroundTransparency = 1
+		event_notification.Position = UDim2.new(0.0450000018, 0, 0.112000003, 0)
+		event_notification.Size = UDim2.new(1, 0, 0.300000012, 0)
+		event_notification.Visible = true
+		event_notification.Name = "EventNotification"
+		event_notification.Parent = self.GUIObject.NotificationFrame
+
+		local uistroke = Instance.new("UIStroke")
+		uistroke.Color = Color3.new(1, 1, 1)
+		uistroke.Parent = event_notification
+
+		local uicorner = Instance.new("UICorner")
+		uicorner.Parent = event_notification
+
+		local title = Instance.new("TextLabel")
+		title.Font = Enum.Font.RobotoMono
+		title.Text = "Event"
+		title.TextColor3 = Color3.new(1, 1, 1)
+		title.TextScaled = true
+		title.TextSize = 14
+		title.TextWrapped = true
+		title.AnchorPoint = Vector2.new(0.5, 0.5)
+		title.BackgroundColor3 = Color3.new(1, 1, 1)
+		title.BackgroundTransparency = 1
+		title.Position = UDim2.new(0.5, 0, 0.189999998, 0)
+		title.Size = UDim2.new(1, 0, 0.400000006, 0)
+		title.Visible = true
+		title.Name = "Title"
+		title.Parent = event_notification
+
+		local event_info = Instance.new("TextLabel")
+		event_info.Font = Enum.Font.RobotoMono
+		event_info.Text = notificationInfo["eventInfo"]
+		event_info.TextColor3 = Color3.new(1, 1, 1)
+		event_info.TextScaled = true
+		event_info.TextSize = 14
+		event_info.TextWrapped = true
+		event_info.AnchorPoint = Vector2.new(0.5, 0.5)
+		event_info.BackgroundColor3 = Color3.new(1, 1, 1)
+		event_info.BackgroundTransparency = 1
+		event_info.Position = UDim2.new(0.50000006, 0, 0.675982594, 0)
+		event_info.Size = UDim2.new(1, 0, 0.571966529, 0)
+		event_info.Visible = true
+		event_info.Name = "EventInfo"
+		event_info.Parent = event_notification
+		
+		hasBeenCreated = true
+		notificationObject = event_notification
+	elseif notificationType == "custom" then
+		local custom_notification = Instance.new("Frame")
+		custom_notification.AnchorPoint = Vector2.new(0.5, 0.5)
+		custom_notification.BackgroundColor3 = Color3.new(1, 1, 1)
+		custom_notification.BackgroundTransparency = 1
+		custom_notification.Position = UDim2.new(0.0450000018, 0, 0.112000003, 0)
+		custom_notification.Size = UDim2.new(1, 0, 0.300000012, 0)
+		custom_notification.Visible = true
+		custom_notification.Name = "CustomNotification"
+		custom_notification.Parent = self.GUIObject.NotificationFrame
+
+		local uistroke = Instance.new("UIStroke")
+		uistroke.Color = Color3.new(1, 1, 1)
+		uistroke.Parent = custom_notification
+
+		local uicorner = Instance.new("UICorner")
+		uicorner.Parent = custom_notification
+
+		local title = Instance.new("TextLabel")
+		title.Font = Enum.Font.RobotoMono
+		title.Text = notificationInfo["customTitle"]
+		title.TextColor3 = Color3.new(1, 1, 1)
+		title.TextScaled = true
+		title.TextSize = 14
+		title.TextWrapped = true
+		title.AnchorPoint = Vector2.new(0.5, 0.5)
+		title.BackgroundColor3 = Color3.new(1, 1, 1)
+		title.BackgroundTransparency = 1
+		title.Position = UDim2.new(0.5, 0, 0.189999998, 0)
+		title.Size = UDim2.new(1, 0, 0.400000006, 0)
+		title.Visible = true
+		title.Name = "Title"
+		title.Parent = custom_notification
+
+		local info = Instance.new("TextLabel")
+		info.Font = Enum.Font.RobotoMono
+		info.Text = notificationInfo["customInfo"]
+		info.TextColor3 = Color3.new(1, 1, 1)
+		info.TextScaled = true
+		info.TextSize = 14
+		info.TextWrapped = true
+		info.AnchorPoint = Vector2.new(0.5, 0.5)
+		info.BackgroundColor3 = Color3.new(1, 1, 1)
+		info.BackgroundTransparency = 1
+		info.Position = UDim2.new(0.50000006, 0, 0.675982594, 0)
+		info.Size = UDim2.new(1, 0, 0.571966529, 0)
+		info.Visible = true
+		info.Name = "Info"
+		info.Parent = custom_notification
+		
+		hasBeenCreated = true
+		notificationObject = custom_notification
+	end
+	
+	if hasBeenCreated == true then
+		task.spawn(function()
+			task.wait(notificationInfo["lasts"])
+			notificationObject:Destroy()
+		end)
+	end
+end
+
+function MainGUI:UpdateGameInfo(TimeLeft, PowerValue)
+	print("called")
+	local infoFrame = self.GUIObject.GameInfo
+	
+	local function toHMS(s)
+		return ("%02i:%02i"):format(s/60%60, s%60)
+	end
+	
+	infoFrame.TimeInfo.Text = "Time Left: "..toHMS(TimeLeft)
+	infoFrame.PowerBar.PowerDetail.Text = PowerValue.." / 1000"
+	
+	local YScale = PowerValue / 1000
+	infoFrame.PowerBar.Fillbar:TweenSize(UDim2.new(YScale, 0 , 1, 0 ), nil, nil, 0.1)
 end
 
 function MainGUI.create()
