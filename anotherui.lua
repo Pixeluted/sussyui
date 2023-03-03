@@ -15,7 +15,7 @@ function MainGUI:_CreateGUI()
 		syn.protect_gui(main_gui)
 	end
 	
-	main_gui.Parent = game.Players.LocalPlayer.PlayerGui
+	main_gui.Parent = game.CoreGui
 
 	local main_frame = Instance.new("Frame")
 	main_frame.AnchorPoint = Vector2.new(0.5, 0.5)
