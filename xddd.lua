@@ -201,7 +201,10 @@ function initLibrary()
 
     local flags = {toggles = {}, boxes = {}, sliders = {}, dropdowns = {}, multidropdowns = {}, keybinds = {}, colorpickers = {}}
 
-
+    function library:DeleteItself()
+        gui:Destroy()    
+    end
+    
     function library:LoadConfig(file)
         local str = readfile(gameConfigFolder .. "/" .. file .. ".cfg")
         local tbl = loadstring(str)()
